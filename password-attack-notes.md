@@ -39,12 +39,19 @@ hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/has
 
 Adding Hashcat rules to JTR  
 ```
-sudo sh -c 'cat /home/jake/myrules.rule >> /etc/john/john.conf'
+sudo nano /etc/john/john.conf
+
+# Append to end of file
+[List.Rules:myCustomRules]
+c $1 $2 $3 $!
+c $1 $2 $3 $@
+c $1 $2 $3 $#
 ```
 
 Using JTR to format hashes  
 ```ssh2john ../Downloads/id_rsa > ssh.hash```  
-```bash
+There are many hash conversion scripts  
+```
 $ locate *2john 
 /usr/bin/1password2john
 /usr/bin/7z2john
@@ -52,5 +59,5 @@ $ locate *2john
 ...
 ```
 
-
-
+### John-the-Ripper
+john --wordlist=ssh.passwords --rules=myCustomRules ssh.hash
