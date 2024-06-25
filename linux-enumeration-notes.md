@@ -1,4 +1,4 @@
-## Linux Privilege Escalation  
+## Linux Enumeration Notes 
 
 ### Information Gathering  
 Name of the host  
