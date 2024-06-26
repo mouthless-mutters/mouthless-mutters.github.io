@@ -60,7 +60,10 @@ cat /etc/iptables/rules.v4
 Cron jobs  
 ```
 ls -lah /etc/cron*
-```  
+```
+```
+grep "CRON" /var/log/syslog
+```
 
 Installed applications  
 ```
