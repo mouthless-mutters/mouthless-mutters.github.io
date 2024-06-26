@@ -91,4 +91,9 @@ lsblk
 Find SUID binaries  
 ```
 find / -perm -u=s -type f 2>/dev/null
+```  
+
+Get capabilities  
+```  
+/usr/sbin/getcap -r / 2>/dev/null
 ```
