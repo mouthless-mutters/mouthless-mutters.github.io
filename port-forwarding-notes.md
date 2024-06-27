@@ -30,7 +30,32 @@ Creates a SSH connection on 10.10.10.42 and sets up dynamic port forarding (-D) 
 ssh -N -D 0.0.0.0:9999 admin@10.10.10.42
 ```
 
-#### Use with proxychains
+### SSH Remote port forwarding
+
+Creates a connection from a remote host to local SSH server (192.168.10.42), and forwards the local port 2345 to a remote host 10.10.10.42 on port 5432. 
+```
+ssh -N -R 127.0.0.1:2345:10.10.10.42:5432 local_admin@192.168.10.42
+```
+
+### SSH Remote dynamic port forwarding
+
+Creates a connection from a remote host to a local SSH server (192.168.10.42), where any traffic going through port 9999 on that host will route to the appropirate host and port.
+```
+ssh -N -R 9999 local_admin@192.168.10.42
+```
+
+### Shuttle
+
+``` 
+sshuttle -r <username:password@<ssh_addr>:<port> <subnet_to_route> <subnet_to_route>
+```
+
+Creates SSH remote connection to 192.168.1.42 and routes any traffic to the specific subnets through the connection.
+```
+sshuttle -r admin@192.168.1.42:2222 10.10.10.0/24 172.16.10.0/24
+```
+
+### Use with proxychains
 Edit /etc/proxychains4.conf to add socks5 10.10.10.42 9999  
 nmap example:  
 ```
@@ -38,7 +63,4 @@ proxychains nmap -Pn 172.16.10.42
 ```
 
 Note, lowering the tcp_read_time_out and tcp_connect_time_out values in /etc/proxychains4.conf dramatically decrease the scan times.
-
-
-
 
