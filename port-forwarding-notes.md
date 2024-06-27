@@ -55,6 +55,14 @@ Creates SSH remote connection to 192.168.1.42 and routes any traffic to the spec
 sshuttle -r admin@192.168.1.42:2222 10.10.10.0/24 172.16.10.0/24
 ```
 
+### ssh.exe
+
+### plink.exe
+
+### netsh
+
+### Chisel
+
 ### Use with proxychains
 Edit /etc/proxychains4.conf to add socks5 10.10.10.42 9999  
 nmap example:  
