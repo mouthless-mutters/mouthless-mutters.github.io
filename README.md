@@ -1,2 +1,2 @@
-# mouthless-mutters.github.io
+# Mouthless Mutters
 Thoughts and notes about coding and cybersecurity.
