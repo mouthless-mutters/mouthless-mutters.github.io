@@ -94,7 +94,27 @@ Useful blog posts that I had written:
 Finding hash mode  
 ```
 hashcat --help | grep -i "hashtype"
+```
+
+#### Password math  
+
+Calculate total number of possibilities  
+```
+charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+password_length = 8
+total_possibilities = len(charset) ** password_length
+```
+
+Benchmark Hashcat
+```
+hashcat -b
+```
+
+Calculate time
 ```  
+time_in_seconds = total_possibilities / benchmark_for_hash_type
+```
+
 
 #### Example commands  
 
