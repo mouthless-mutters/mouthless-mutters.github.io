@@ -75,6 +75,11 @@ Find writable directories
 find / -writable -type d 2>/dev/null
 ```
 
+Find writable files  
+```
+find / -writable -type f 2>/dev/null
+```
+
 List mounted filesystems  
 ```
 cat /etc/fstab
