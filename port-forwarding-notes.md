@@ -1,5 +1,43 @@
 ## Port Forwarding
 
+### Ligolo  
+ligolo setup and usage: https://www.youtube.com/watch?v=DM1B8S80EvQ
+
+On kali
+```
+sudo ip tuntap add user kali mode tun ligolo
+sudo ip link set ligolo up
+./proxy -selfcert
+```
+
+Transfer agent to the pivot machine
+```
+.\agent.exe -connect 192.168.45.159:11601 -ignore-cert
+```
+
+on kali
+```
+ligolo-ng> session
+<enter session number> (observe the network we want to add)
+sudo ip route add 10.10.205.0/24 dev ligolo
+ligolo-ng> start
+```
+
+run netexec to see if things work
+```
+netexec smb 172.16.188.0/24
+```
+
+Set up listener
+```
+ligolo-ng> listener_add --addr 0.0.0.0:7788 --to 127.0.0.1:8877
+```
+(<listener list to see listener)
+
+```
+listener_add --addr 0.0.0.0:8899 --to 127.0.0.1:9988
+```
+
 ### Socat examples  
 ```
 socat TCP-LISTEN:<LPORT>,fork TCP:<RHOST_IP>:<RPORT>
